@@ -1,0 +1,65 @@
+package org.example;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Main {
+
+    WebDriver webDriver;
+
+    public void loadWeb() throws InterruptedException {
+        webDriver = new ChromeDriver();
+        webDriver.get("https://book.spicejet.com/search.aspx");
+        Thread.sleep(2000);
+    }
+
+    public void selectDepartureCity() throws InterruptedException {
+        webDriver.findElement(By.id("ControlGroupSearchView_AvailabilitySearchInputSearchVieworiginStation1_CTXT")).click();
+        Thread.sleep(2000);
+        webDriver.findElement(By.linkText("Chennai (MAA)")).click();
+        Thread.sleep(2000);
+    }
+
+    public void selectArrivalCity() throws InterruptedException {
+        webDriver.findElement(By.id("ControlGroupSearchView_AvailabilitySearchInputSearchViewdestinationStation1_CTXT")).click();
+        Thread.sleep(2000);
+        webDriver.findElement(By.linkText("Delhi (DEL)")).click();
+        Thread.sleep(2000);
+    }
+
+    public void departureDate() throws InterruptedException {
+        webDriver.findElement(By.id("custom_date_picker_id_1")).click();
+        Thread.sleep(2000);
+        webDriver.findElement(By.linkText("20")).click();
+        Thread.sleep(2000);
+    }
+
+    public void currencySelect() throws InterruptedException {
+        webDriver.findElement(By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListCurrency")).click();
+        Thread.sleep(2000);
+        webDriver.findElement(By.cssSelector("option[value='BDT']")).click();
+        Thread.sleep(2000);
+    }
+
+    public void searchFlight() throws InterruptedException {
+        webDriver.findElement(By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_ButtonSubmit")).click();
+        Thread.sleep(2000);
+    }
+
+    public void exit() {
+        webDriver.quit();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Main bookingFlight = new Main();
+        bookingFlight.loadWeb();
+        bookingFlight.selectDepartureCity();
+        bookingFlight.selectArrivalCity();
+        bookingFlight.departureDate();
+        bookingFlight.currencySelect();
+        bookingFlight.searchFlight();
+    }
+}
